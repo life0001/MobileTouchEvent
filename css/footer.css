@@ -1,0 +1,6 @@
+body{height:1000px;}
+footer table{width:960px; height:122px; background-color: #2691de; text-align: center;}
+table td{width:320px; height:40px;}
+td a{ height:40px; line-height:40px; display:inline-block;}
+footer .indexFooterA{border-left:1px solid #fff; width:319px;}
+footer{position:absolute; bottom:0;}
