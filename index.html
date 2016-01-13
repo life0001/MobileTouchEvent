@@ -53,6 +53,19 @@
 //    document.addEventListener('touchstart',touch, false);  // touchstart ：当手指触摸屏幕时候触发。
 //    document.addEventListener('touchend',touch, false);    // touchend: 当手指从屏幕上离开的时候触发。
 //    document.addEventListener('touchmove',touch, false);   //touchmove ：当手指在屏幕上滑动的时候连续地触发。
+
+
+
+
+//如果不兼容上下手势滑动的话就用scrollTop方法，如下：
+//var scroll,scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+            //$(window).scroll(function(){
+            //    scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+            //    if(scroll<scrolltop){ //手势向上滑动
+            //        do
+            //    }
+            //    scroll=scrolltop;
+            //});
 </script>
 </body>
 </html>
