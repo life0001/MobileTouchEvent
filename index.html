@@ -13,7 +13,7 @@
 <p id="e">eee</p>
 <s id="f">fff</s>
 <script>
-    var startY,endY,startX,endX;
+    var startY,endY,startX,endX,timeoutevent,delay=500;
     var scroll,scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
     //jQuery方式监听事件
     $(document).on({
@@ -25,14 +25,19 @@
 //            $('body').css('background-color','black')
 //        }
     });
+    function longPree(){
+        $('body').css('background-color','black')
+    }
     function touch(event){
         var e=event || window.event;
         switch(e.type){
             case 'touchstart':
+                timeoutevent=setTimeout(longPree,delay);  //手势长按
                 startY= e.originalEvent.changedTouches[0].screenY; //不兼容手机UC浏览器
                 startX= e.originalEvent.changedTouches[0].screenX;
                 break;
             case 'touchend':
+                clearTimeout(timeoutevent);
                 endY=e.originalEvent.changedTouches[0].screenY; //不兼容手机UC浏览器
                 endX=e.originalEvent.changedTouches[0].screenX;
 
@@ -52,6 +57,7 @@
                 break;
             case 'touchmove':
                 //do
+                clearTimeout(timeoutevent);
                 break;
             case 'scroll':
                 //上下滑动
