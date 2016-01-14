@@ -13,7 +13,10 @@
 <p id="e">eee</p>
 <s id="f">fff</s>
 <script>
-    var startY,endY,startX,endX,timeoutevent,delay=500;
+    var startY,endY,startX,endX,
+            timeoutevent,       //手势长按函数
+            delay=600,           //手势长按时间
+            distance='100px';   //手势左右移动距离
     var scroll,scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
     //jQuery方式监听事件
     $(document).on({
@@ -50,9 +53,15 @@
 
                 //左右滑动
                 if(startX>endX){  //手势向左滑动
-                    $('#e').css('color',"#939")
+                    $('#e').css('color',"#939");
+                    if(startX-endX>=parseInt(distance)){   //手势 向左 移动指定距离后执行操作
+                        $('body').css('background-color','yellow');
+                    }
                 }else if(startX<endX){  //手势向右滑动
-                    $('#e').css('color',"#399")
+                    $('#e').css('color',"#399");
+                    if(endX-startX>=parseInt(distance)){   //手势 向右 移动指定距离后执行操作
+                        $('body').css('background-color','#fff');
+                    }
                 }
                 break;
             case 'touchmove':
