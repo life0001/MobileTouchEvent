@@ -13,29 +13,36 @@
 <p id="e">eee</p>
 <s id="f">fff</s>
 <script>
-    //jQuery方式手势事件
     var startY,endY,startX,endX;
+    var scroll,scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    //jQuery方式监听事件
     $(document).on({
-        'touchstart':touch,   // touchstart：当手指触摸屏幕时候触发。
-        'touchend':touch,     // touchend：当手指从屏幕上离开的时候触发。
-        'touchmove':touch     // touchmove：当手指在屏幕上滑动的时候连续地触发。
+        'touchstart':touch,  // touchstart ：当手指触摸屏幕时候触发。
+        'touchend':touch,    // touchend: 当手指从屏幕上离开的时候触发。
+        'touchmove':touch,    //touchmove ：当手指在屏幕上滑动的时候连续地触发。
+        'scroll':touch
+//        'click':function(){
+//            $('body').css('background-color','black')
+//        }
     });
     function touch(event){
         var e=event || window.event;
         switch(e.type){
             case 'touchstart':
-                startY= e.originalEvent.changedTouches[0].clientY;
-                startX= e.originalEvent.changedTouches[0].clientX;
+                startY= e.originalEvent.changedTouches[0].screenY; //不兼容手机UC浏览器
+                startX= e.originalEvent.changedTouches[0].screenX;
                 break;
             case 'touchend':
-                endY=e.originalEvent.changedTouches[0].clientY;
-                endX=e.originalEvent.changedTouches[0].clientX;
-                //上下滑动
-                if(startY>endY){  //手势向上滑动
-                    $('#d').css('color',"red")
-                }else if(startY<endY){  //手势向下滑动
-                    $('#d').css('color',"blue")
-                }
+                endY=e.originalEvent.changedTouches[0].screenY; //不兼容手机UC浏览器
+                endX=e.originalEvent.changedTouches[0].screenX;
+
+                  //上下滑动    //不兼容手机UC浏览器
+//                if(startY>endY){  //手势向上滑动
+//                    $('#d').css('color',"red")
+//                }else if(startY<endY){  //手势向下滑动
+//                    $('#d').css('color',"blue")
+//                }
+
                 //左右滑动
                 if(startX>endX){  //手势向左滑动
                     $('#e').css('color',"#939")
@@ -46,26 +53,24 @@
             case 'touchmove':
                 //do
                 break;
+            case 'scroll':
+                //上下滑动
+                scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                if(scroll<scrolltop){ //手势向上滑动
+                    $('#d').css('color',"red")
+                }else if(scroll>scrolltop){  //手势向下滑动
+                    $('#d').css('color',"blue")
+                }
+                scroll=scrolltop;
+                break;
         }
     }
     
-//    原生方式 手势事件
+//    原生方式监听事件
 //    document.addEventListener('touchstart',touch, false);  // touchstart ：当手指触摸屏幕时候触发。
 //    document.addEventListener('touchend',touch, false);    // touchend: 当手指从屏幕上离开的时候触发。
 //    document.addEventListener('touchmove',touch, false);   //touchmove ：当手指在屏幕上滑动的时候连续地触发。
 
-
-
-
-//如果不兼容上下手势滑动的话就用scrollTop方法，如下：
-//var scroll,scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-            //$(window).scroll(function(){
-            //    scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-            //    if(scroll<scrolltop){ //手势向上滑动
-            //        do
-            //    }
-            //    scroll=scrolltop;
-            //});
 </script>
 </body>
 </html>
