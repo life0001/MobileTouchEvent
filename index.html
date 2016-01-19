@@ -18,16 +18,25 @@
             delay=600,           //手势长按时间
             distance='100px';   //手势左右移动距离
     var scroll,scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    var count=0;
     //jQuery方式监听事件
     $(document).on({
         'touchstart':touch,  // touchstart ：当手指触摸屏幕时候触发。
         'touchend':touch,    // touchend: 当手指从屏幕上离开的时候触发。
         'touchmove':touch,   //touchmove ：当手指在屏幕上滑动的时候连续地触发。
         'scroll':touch       //滚动事件
-//        'click':function(){
-//            $('body').css('background-color','black')
-//        }
+        'click':clickEvent   //点击事件 //判断是单击还是双击
     });
+    
+    function clickEvent(){
+        count++;
+        setTimeout(function(){
+            count=0;
+        },500);
+        count==2 ? $('body').css('background-color','#6cff00') : $('body').css('background-color','black');
+    }
+    
+    //手势长按
     function longPree(){
         $('body').css('background-color','black')
     }
