@@ -42,6 +42,7 @@
     }
     function touch(event){
         var e=event || window.event;
+        e.preventDefault();
         switch(e.type){
             case 'touchstart':
                 timeoutevent=setTimeout(longPree,delay);  //手势长按
