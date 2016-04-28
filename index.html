@@ -46,20 +46,20 @@
         switch(e.type){
             case 'touchstart':
                 timeoutevent=setTimeout(longPree,delay);  //手势长按
-                startY= e.originalEvent.changedTouches[0].screenY; //不兼容手机UC浏览器
+                startY= e.originalEvent.changedTouches[0].screenY;
                 startX= e.originalEvent.changedTouches[0].screenX;
                 break;
             case 'touchend':
                 clearTimeout(timeoutevent);
-                endY=e.originalEvent.changedTouches[0].screenY; //不兼容手机UC浏览器
+                endY=e.originalEvent.changedTouches[0].screenY;
                 endX=e.originalEvent.changedTouches[0].screenX;
 
-                  //上下滑动    //不兼容手机UC浏览器
-//                if(startY>endY){  //手势向上滑动
-//                    $('#d').css('color',"red")
-//                }else if(startY<endY){  //手势向下滑动
-//                    $('#d').css('color',"blue")
-//                }
+                  //上下滑动 
+                if(startY>endY){  //手势向上滑动
+                    $('#d').css('color',"red")
+                }else if(startY<endY){  //手势向下滑动
+                    $('#d').css('color',"blue")
+                }
 
                 //左右滑动
                 if(startX>endX){  //手势向左滑动
@@ -81,13 +81,13 @@
                 break;
             case 'scroll':
                 //上下滑动
-                scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                if(scroll<scrolltop){ //手势向上滑动
-                    $('#d').css('color',"red")
-                }else if(scroll>scrolltop){  //手势向下滑动
-                    $('#d').css('color',"blue")
-                }
-                scroll=scrolltop;
+                // scrolltop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                // if(scroll<scrolltop){ //手势向上滑动
+                //     $('#d').css('color',"red")
+                // }else if(scroll>scrolltop){  //手势向下滑动
+                //     $('#d').css('color',"blue")
+                // }
+                // scroll=scrolltop;
                 break;
         }
     }
