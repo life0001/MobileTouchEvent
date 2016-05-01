@@ -1,0 +1,34 @@
+	//手势
+	$('.container-fluid ').on({
+		'touchstart':touch,
+		'touchend':touch
+	})
+	var scrolltop=$(window).scrollTop(),winHeight=$(window).height();
+	function touch(event){
+     	var e=event || window.event,
+	     	$ele=$(e.target);
+		if($ele.is('.video')){  //判断当前手势触摸的是不是video标签（用在父级绑定事件，子级也绑定事件的情况下使用）
+			alert(3123123)
+		}else if($ele.is('label')){
+
+		} else{
+	switch(e.type){
+	        case 'touchstart': 
+	   	     e.preventDefault();    //阻止默认事件，用来防止滚动条滚动，下面根据手势向上OR向下滑动然后用animate方法去实现滚动条滚动（适合滑动一次滚动整个屏幕的情况）
+	        	startY= e.originalEvent.changedTouches[0].screenY;            	
+	            break;
+	        case 'touchend':
+	        	moveY= e.originalEvent.changedTouches[0].screenY;
+	        	if(startY>moveY){
+	    			$('html,body').stop().animate({scrollTop:'+='+winHeight},function(){
+	    			});   
+	        	}
+	        	else{
+	        		$('html,body').stop().animate({scrollTop:'-='+winHeight},function(){
+	    			});
+	        	}  
+	      		break;
+	     }
+		}   
+	     
+	  }
