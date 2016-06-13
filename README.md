@@ -11,13 +11,17 @@
 6.click
 7.touchend
 
+
+获取手指触摸屏幕后的所有属性/值
+e.originalEvent
+
 触摸事件
-1. touches ：当前位于屏幕上的所有手指的一个列表。
-2. targetTouches ：位于当前DOM元素上的手指的一个列表。
-3. changedTouches ：涉及当前事件的手指的一个列表。
+1. e.originalEvent.touches ：当前位于屏幕上的所有手指的一个列表。
+2. e.originalEvent.targetTouches ：位于当前DOM元素上的手指的一个列表。
+3. e.originalEvent.changedTouches ：涉及当前事件的手指的一个列表。
+ 
 
 多手指触摸
-//e.originalEvent   获取手指触摸屏幕后的所有属性/值
 if (e.originalEvent.targetTouches.length == 2) {    //2根手指
   		startX1= e.originalEvent.changedTouches[0].screenX;  //第1根手指的横坐标
   		startX2= e.originalEvent.changedTouches[1].screenX;  //第2根手指的横坐标
